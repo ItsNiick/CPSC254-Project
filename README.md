@@ -9,4 +9,13 @@ Vivian Cao
 
 -- This is where we will provide information on what our project will be as well as how it will be developed. --
 
-# Installation Process
+# Installation Process:
+1. **Install SQLite:**
+  Open your terminal and run these commands in the given order to scan for updates to your system and existing packages:
+  ```bash
+  sudo apt-get update
+  ```
+  ```bash
+  sudo apt-get upgrade
+  ```
+  
