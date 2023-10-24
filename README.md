@@ -8,3 +8,5 @@ Vivian Cao
 
 
 -- This is where we will provide information on what our project will be as well as how it will be developed. --
+
+# Installation Process
