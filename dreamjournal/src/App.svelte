@@ -19,10 +19,10 @@
 	<h2> Explore and Be Inspired </h2>
 	<p><center>Connect with a community of dreamers, sharing the essence of their night-time odysseys. <br>
 		Gain insights, find inspirations, and enrich your dream journaling experience in a space that celebrates the boundless creativity of dreamers like you!</center></p>
-		<EntryButton type="primary" flat={false}>Create new entry</EntryButton>
-		<!--Move EntryButton to more prefered location later. 
-		Change flat={true} if want no-shadow.
-		type="primary" = Sky blue #87CEEB. type="secondary" = Teal #008080-->
+	<EntryButton type="primary" flat={false}>Create new entry</EntryButton>
+	<!--Move EntryButton to more prefered location later. 
+	Change flat={true} if want no-shadow.
+	type="primary" = Sky blue #87CEEB. type="secondary" = Teal #008080-->
 	<Footer />
 </main>
 
