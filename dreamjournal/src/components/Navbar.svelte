@@ -22,6 +22,7 @@
     .nav-links {
       display: flex;
       gap: 1rem;
+      width: auto;
     }
   
     a {
