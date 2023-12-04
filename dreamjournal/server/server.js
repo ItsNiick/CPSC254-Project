@@ -24,16 +24,16 @@ app.get('/api/dreams', (req, res) => {
 });
 
 // API endpoint to add a new dream journal entry
-app.post('/api/dreams', (req, res) => {
+app.post('/api/dreams', async (req, res) => {
     const { title, description, date } = req.body;
-    addDream(title, description, date, (err) => {
-        if (err) {
-            console.error(err);
-            res.status(500).json({ error: 'Internal server error' });
-        } else {
-            res.sendStatus(201);
-        }
-    });
+    
+    try {
+        await addDream(title, description, date);
+        res.sendStatus(201);
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: 'Internal server error' });
+    }
 });
 
 // API endpoint to update a dream journal entry by its ID

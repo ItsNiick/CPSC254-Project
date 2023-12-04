@@ -11,11 +11,15 @@ async function initializeDatabase() {
         const schema = await fs.readFile('../database/dreams.sql', 'utf8');
         db.exec(schema);
         logger.info('Database schema initialized.');
+
+        // Set the permissions for dreams.db (readable and writable)
+        fs.chmodSync('../database/dreams.db', 0o666); // Octal representation for read and write permissions
     } catch (err) {
         logger.error('Error executing SQL schema:', err);
         console.error('Error executing SQL schema:', err);
     }
 }
+
 
 // Function to fetch all dream entries
 function getAllDreams(callback) {
@@ -31,22 +35,25 @@ function getAllDreams(callback) {
 
 // Function to add a new dream entry
 function addDream(title, description, date) {
-    const currentDate = new Date().toISOString();
+    return new Promise((resolve, reject) => {
+        const currentDate = new Date().toISOString();
 
-    db.run(
-        'INSERT INTO dreams (title, description, date) VALUES (?, ?, ?)',
-        [title, description, currentDate],
-        (err) => {
-            if (err) {
-                logger.error('Error adding a dream entry:', err);
-                reject(err); // Reject the promise with an error
-            } else {
-                logger.info('Dream entry added.');
-                resolve(); // Resolve the promise (no error)
+        db.run(
+            'INSERT INTO dreams (title, description, date) VALUES (?, ?, ?)',
+            [title, description, currentDate],
+            (err) => {
+                if (err) {
+                    logger.error('Error adding a dream entry:', err);
+                    reject(err); // Reject the promise with an error
+                } else {
+                    logger.info('Dream entry added.');
+                    resolve(); // Resolve the promise (no error)
+                }
             }
-        }
-    );
-}
+        );
+    });
+    }
+
 
 // Function to update a dream entry by its ID
 function updateDream(id, title, description, date, callback) {
@@ -70,4 +77,4 @@ export {
     getAllDreams,
     addDream,
     updateDream,
-};
+}; 

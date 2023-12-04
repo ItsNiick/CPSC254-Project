@@ -3,6 +3,7 @@
 # Specify the name of SQLite database file
 DB_FILE="dreams.db"
 
+
 # Remove the existing database file (if it exists)
 if [ -e "$DB_FILE" ]; then
     rm "$DB_FILE"
@@ -24,4 +25,5 @@ INSERT INTO dreams (title, description) VALUES
     ('Second Dream', 'I had a strange dream last night.');
 EOF
 
+chmod 666 "$DB_FILE"  # Adjust permissions as needed
 echo "SQLite database '$DB_FILE' initialized."
