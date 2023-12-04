@@ -1,7 +1,8 @@
 <script>
     export let type = 'primary';
     export let flat = false;
-</script>
+  
+  </script>
 
 <button class={type} class:flat={flat}>
     <slot></slot>
