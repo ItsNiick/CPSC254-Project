@@ -20,7 +20,9 @@
   },
   "dependencies": {
     "degit": "^2.8.4",
+    "express": "^4.18.2",
     "sirv-cli": "^2.0.0",
+    "sqlite3": "^5.1.6",
     "svelte-routing": "^2.5.0"
   }
 }
