@@ -38,9 +38,6 @@ function getAllDreams(callback) {
         } else {
             callback(null, rows);
         }
-
-        // Close the database connection
-        closeDatabase();
     });
 }
 
@@ -60,9 +57,6 @@ function addDream(title, description, date) {
                     logger.info('Dream entry added.');
                     resolve(); // Resolve the promise (no error)
                 }
-
-                // Close the database connection
-                closeDatabase();
             }
         );
     });
@@ -81,9 +75,6 @@ function updateDream(id, title, description, date, callback) {
                 logger.info('Dream entry updated.');
                 callback(null);
             }
-
-            // Close the database connection
-            closeDatabase();
         }
     );
 }

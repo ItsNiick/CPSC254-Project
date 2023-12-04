@@ -2,11 +2,6 @@
 import express from 'express'; // Import the express.js library
 import { initializeDatabase, getAllDreams, addDream, updateDream } from './database.mjs';
 
-// Import the dotenv package
-require('dotenv').config();
-
-// Access environment variables using process.env
-const dbUrl = process.env.DB_URL;
 
 const app = express();
 const port = process.env.PORT || 3000;
