@@ -1,25 +1,33 @@
-// database.mjs
 import sqlite3 from 'sqlite3';
-import fs from 'fs/promises'; // Import 'fs/promises' for reading files asynchronously
+import fs from 'fs'; // Import 'fs' for reading files synchronously
 import logger from '../logger.js';
 
 const db = new sqlite3.Database('../database/dreams.db');
 
 // Function to initialize the database and create tables (if needed)
-async function initializeDatabase() {
+function initializeDatabase() {
     try {
-        const schema = await fs.readFile('../database/dreams.sql', 'utf8');
+        const schema = fs.readFileSync('../database/dreams.sql', 'utf8');
         db.exec(schema);
         logger.info('Database schema initialized.');
-
-        // Set the permissions for dreams.db (readable and writable)
-        fs.chmodSync('../database/dreams.db', 0o666); // Octal representation for read and write permissions
     } catch (err) {
         logger.error('Error executing SQL schema:', err);
         console.error('Error executing SQL schema:', err);
     }
 }
 
+// Function to close the database connection
+function closeDatabase() {
+    if (db) {
+        db.close((err) => {
+            if (err) {
+                logger.error('Error closing the database:', err);
+            } else {
+                logger.info('Database connection closed.');
+            }
+        });
+    }
+}
 
 // Function to fetch all dream entries
 function getAllDreams(callback) {
@@ -30,6 +38,9 @@ function getAllDreams(callback) {
         } else {
             callback(null, rows);
         }
+
+        // Close the database connection
+        closeDatabase();
     });
 }
 
@@ -49,11 +60,13 @@ function addDream(title, description, date) {
                     logger.info('Dream entry added.');
                     resolve(); // Resolve the promise (no error)
                 }
+
+                // Close the database connection
+                closeDatabase();
             }
         );
     });
-    }
-
+}
 
 // Function to update a dream entry by its ID
 function updateDream(id, title, description, date, callback) {
@@ -68,6 +81,9 @@ function updateDream(id, title, description, date, callback) {
                 logger.info('Dream entry updated.');
                 callback(null);
             }
+
+            // Close the database connection
+            closeDatabase();
         }
     );
 }
@@ -77,4 +93,4 @@ export {
     getAllDreams,
     addDream,
     updateDream,
-}; 
+};

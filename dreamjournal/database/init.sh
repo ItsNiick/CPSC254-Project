@@ -25,5 +25,4 @@ INSERT INTO dreams (title, description) VALUES
     ('Second Dream', 'I had a strange dream last night.');
 EOF
 
-chmod 666 "$DB_FILE"  # Adjust permissions as needed
 echo "SQLite database '$DB_FILE' initialized."

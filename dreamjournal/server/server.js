@@ -2,6 +2,12 @@
 import express from 'express'; // Import the express.js library
 import { initializeDatabase, getAllDreams, addDream, updateDream } from './database.mjs';
 
+// Import the dotenv package
+require('dotenv').config();
+
+// Access environment variables using process.env
+const dbUrl = process.env.DB_URL;
+
 const app = express();
 const port = process.env.PORT || 3000;
 
@@ -53,6 +59,10 @@ app.put('/api/dreams/:id', (req, res) => {
 });
 
 
+// Close the database connection when the application is shutting down
+process.on('exit', () => {
+    closeDatabase();
+});
 
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
