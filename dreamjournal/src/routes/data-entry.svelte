@@ -3,7 +3,6 @@
     import { Link } from 'svelte-routing';
     import Navbar from "../components/Navbar.svelte";
     import Footer from "../components/Footer.svelte";
-    import HomeButton from '../components/HomeButton.svelte';
 
     function submition() {
         console.log("Your dream has been submitted:", dreamText);
@@ -13,8 +12,8 @@
   
   <main>
     <Navbar />
-    <h1>Data Entry Page</h1>
-    <p>Note down your dream:</p>
+    <h1>Create your dream entry</h1>
+    <p>Note down your dream so that you may revisit it whenever you want</p>
     <div class="form-container">
         <textarea bind:value={dreamText} rows="10" cols="30" style="width: 35%;"></textarea>
         <Link to="/successful-submission">
