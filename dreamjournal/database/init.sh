@@ -3,8 +3,6 @@
 # Specify the name of SQLite database file
 DB_FILE="dreams.db"
 
-echo exec('whoami');
-
 # Remove the existing database file (if it exists)
 if [ -e "$DB_FILE" ]; then
     rm "$DB_FILE"

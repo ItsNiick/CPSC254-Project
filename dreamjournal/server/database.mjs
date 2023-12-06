@@ -79,9 +79,25 @@ function updateDream(id, title, description, date, callback) {
     );
 }
 
+// Function to delete a dream entry by its ID
+function deleteDream(id) {
+    return new Promise((resolve, reject) => {
+        db.run('DELETE FROM dreams WHERE id=?', [id], (err) => {
+            if (err) {
+                logger.error('Error deleting a dream entry:', err);
+                reject(err); // Reject the promise with an error
+            } else {
+                logger.info('Dream entry deleted.');
+                resolve(); // Resolve the promise (no error)
+            }
+        });
+    });
+}
+
 export {
     initializeDatabase,
     getAllDreams,
     addDream,
     updateDream,
+    deleteDream,
 };

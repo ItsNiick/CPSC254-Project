@@ -53,12 +53,33 @@ app.put('/api/dreams/:id', (req, res) => {
     });
 });
 
+// API endpoint to delete a dream journal entry by its ID
+app.delete('/api/dreams/:id', async (req, res) => {
+    const id = req.params.id;
+    
+    try {
+        await deleteDream(id);
+        res.sendStatus(200); // Successful deletion
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
 
 // Close the database connection when the application is shutting down
 process.on('exit', () => {
     closeDatabase();
 });
 
+process.on('SIGINT', () => {
+    closeDatabase();
+    process.exit(0);
+});
+
+process.on('SIGTERM', () => {
+    closeDatabase();
+    process.exit(0);
+});
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
 });

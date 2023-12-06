@@ -33,3 +33,16 @@
 {"code":"SQLITE_READONLY","errno":8,"level":"error","message":"Error adding a dream entry: SQLITE_READONLY: attempt to write a readonly database","stack":"Error: SQLITE_READONLY: attempt to write a readonly database"}
 {"code":"SQLITE_READONLY","errno":8,"level":"error","message":"Error adding a dream entry: SQLITE_READONLY: attempt to write a readonly database","stack":"Error: SQLITE_READONLY: attempt to write a readonly database"}
 {"level":"info","message":"Database schema initialized."}
+{"level":"info","message":"Database schema initialized."}
+{"level":"info","message":"Dream entry added."}
+{"level":"info","message":"Dream entry updated."}
+{"level":"info","message":"Database schema initialized."}
+{"level":"info","message":"Dream entry updated."}
+{"level":"info","message":"Dream entry updated."}
+{"level":"info","message":"Dream entry updated."}
+{"code":"SQLITE_READONLY","errno":8,"level":"error","message":"Error updating a dream entry: SQLITE_READONLY: attempt to write a readonly database","stack":"Error: SQLITE_READONLY: attempt to write a readonly database"}
+{"level":"info","message":"Dream entry updated."}
+{"level":"info","message":"Dream entry updated."}
+{"code":"SQLITE_READONLY","errno":8,"level":"error","message":"Error updating a dream entry: SQLITE_READONLY: attempt to write a readonly database","stack":"Error: SQLITE_READONLY: attempt to write a readonly database"}
+{"code":"SQLITE_READONLY","errno":8,"level":"error","message":"Error updating a dream entry: SQLITE_READONLY: attempt to write a readonly database","stack":"Error: SQLITE_READONLY: attempt to write a readonly database"}
+{"code":"SQLITE_READONLY","errno":8,"level":"error","message":"Error updating a dream entry: SQLITE_READONLY: attempt to write a readonly database","stack":"Error: SQLITE_READONLY: attempt to write a readonly database"}
