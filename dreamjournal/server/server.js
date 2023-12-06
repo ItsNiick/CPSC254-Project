@@ -17,7 +17,7 @@ app.get('/api/dreams', (req, res) => {
    getAllDreams(function (err, data) {
         if (err) {
             console.error(err);
-            res.status(500).json({ error: 'Internal server error' });
+            res.status(500).json({ error: 'Unable to retrieve entries' });
         } else {
             res.json(data);
         }
@@ -33,7 +33,7 @@ app.post('/api/dreams', async (req, res) => {
         res.sendStatus(201);
     } catch (err) {
         console.error(err);
-        res.status(500).json({ error: 'Internal server error' });
+        res.status(500).json({ error: 'Unable to add entry' });
     }
 });
 
@@ -46,7 +46,7 @@ app.put('/api/dreams/:id', (req, res) => {
     updateDream(id, title, description, date, (err) => {
         if (err) {
             console.error(err);
-            res.status(500).json({ error: 'Internal server error' });
+            res.status(500).json({ error: 'Unable to update entry' });
         } else {
             res.sendStatus(204); // Successful update (no content)
         }
@@ -62,7 +62,7 @@ app.delete('/api/dreams/:id', async (req, res) => {
         res.sendStatus(200); // Successful deletion
     } catch (err) {
         console.error(err);
-        res.status(500).json({ error: 'Internal server error' });
+        res.status(500).json({ error: 'Unable to delete entry' });
     }
 });
 

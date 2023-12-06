@@ -1,14 +1,17 @@
-// logger.js
 import winston from 'winston';
 
 const logger = winston.createLogger({
-  level: 'info', // Log level
-  format: winston.format.json(), // Log format (JSON)
+  level: 'info',
+  format: winston.format.combine(
+    winston.format.timestamp({
+      format: 'YYYY-MM-DD HH:mm:ss'
+    }),
+    winston.format.json()
+  ),
   transports: [
-    new winston.transports.File({ filename: 'error.log', level: 'error' }), // Log errors to error.log
-    new winston.transports.File({ filename: 'combined.log' }) // Log all messages to combined.log
+    new winston.transports.File({ filename: 'error.log', level: 'error' }),
+    new winston.transports.File({ filename: 'combined.log' })
   ]
 });
 
-// Export the logger object
 export default logger;

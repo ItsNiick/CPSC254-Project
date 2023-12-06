@@ -7,7 +7,7 @@ const db = new sqlite3.Database('../database/dreams.db');
 // Function to initialize the database and create tables (if needed)
 function initializeDatabase() {
     try {
-        const schema = fs.readFileSync('../database/dreams.sql', 'utf8');
+        const schema = fs.readFileSync('../database/init.sh', 'utf8');
         db.exec(schema);
         logger.info('Database schema initialized.');
     } catch (err) {
