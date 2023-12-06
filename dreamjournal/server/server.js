@@ -1,22 +1,25 @@
-// server.js
 import express from 'express';
 import bodyParser from 'body-parser';
+import cors from 'cors'; // Import the cors middleware
 import { db } from './db.js';
 
 const app = express();
 const port = 3000;
+
+// Use cors middleware
+app.use(cors());
 
 app.use(bodyParser.json());
 
 // API endpoint to save a dream
 app.post('/api/dreams', async (req, res) => {
   const { title, description, date } = req.body;
-  db.run('INSERT INTO dreams (title, description, date) VALUES (?, ?, ?)', [title, description, date], function (err) {
+  db.run('INSERT INTO dreams (title, description, date) VALUES (?, ?, ?)', [title, description, date], (err) => {
     if (err) {
       console.error(err.message);
-      res.status(500).send('Internal Server Error');
+      res.status(500).json({ error: 'Internal Server Error' });
     } else {
-      res.status(201).send('Dream saved successfully');
+      res.status(201).json({ message: 'Dream saved successfully' });
     }
   });
 });

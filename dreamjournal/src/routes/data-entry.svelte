@@ -1,12 +1,41 @@
 <script>
     let dreamText = '';
-    import { Link } from 'svelte-routing';
     import Navbar from "../components/Navbar.svelte";
     import Footer from "../components/Footer.svelte";
+    import { navigate } from 'svelte-routing';
 
-    function submition() {
-        console.log("Your dream has been submitted:", dreamText);
+    async function submission() {
+    console.log('Submitting dream:', dreamText);
+
+    try {
+      const response = await fetch('http://localhost:3000/api/dreams', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          title: 'Dream Entry',
+          description: dreamText,
+          date: new Date().toISOString().split('T')[0],
+        }),
+      });
+
+      console.log('Server response:', response);
+
+      if (!response.ok) {
+        throw new Error(`Dream submission failed with status: ${response.status}`);
+      }
+
+      // Read the response text directly, not attempting JSON parsing
+      const responseText = await response.text();
+
+      console.log('Dream submitted successfully:', responseText);
+      navigate('/successful-submission');
+    } catch (error) {
+      console.error('Error submitting dream:', error.message);
     }
+  }
+
   </script>
 
   
@@ -16,9 +45,7 @@
     <p>Note down your dream so that you may revisit it whenever you want</p>
     <div class="form-container">
         <textarea bind:value={dreamText} rows="10" cols="30" style="width: 35%;"></textarea>
-        <Link to="/successful-submission">
-          <button on:click={submition}>Submit Dream</button>
-        </Link>
+        <button on:click={submission}>Submit Dream</button>
     </div>
     <Footer />
   </main>

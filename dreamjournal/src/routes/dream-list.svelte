@@ -2,21 +2,45 @@
     import { Link } from 'svelte-routing';
     import Navbar from "../components/Navbar.svelte";
     import Footer from "../components/Footer.svelte";
-    import EntryButton from '../components/EntryButton.svelte';
-    import HomeButton from '../components/HomeButton.svelte';
     import DeleteButton from '../components/DeleteButton.svelte';
     import UpdateButton from '../components/UpdateButton.svelte';
+    import { onMount } from 'svelte';
+
+    let dreams = [];
+    onMount(async () => {
+        try {
+        const response = await fetch('http://localhost:3000/api/dreams');
+        if (!response.ok) {
+            throw new Error(`Failed to fetch dreams with status: ${response.status}`);
+        }
+
+        dreams = await response.json();
+        } catch (error) {
+        console.error('Error fetching dreams:', error.message);
+        }
+    });
+
 </script>
 
 <main>
     <Navbar />
     <h1>Here is your dream list.</h1>
     <p>You can explore your past dreams, update them, or even delete them.</p>
-    <Link to="/data-entry">
-        <button>Submit another dream</button>
-    </Link>
-    <DeleteButton>Delete this dream</DeleteButton>
-    <UpdateButton>Update this dream</UpdateButton>
+    {#if dreams.length > 0}
+    <ul>
+      {#each dreams as dream (dream.id)}
+        <li>
+          <p>{dream.title}</p>
+          <p>{dream.description}</p>
+          <p>{dream.date}</p>
+          <DeleteButton>Delete this dream</DeleteButton>
+          <UpdateButton>Update this dream</UpdateButton>
+        </li>
+      {/each}
+        </ul>
+    {:else}
+        <p>No dreams available.</p>
+    {/if}
     <Footer />
 </main>
 
@@ -44,6 +68,15 @@
         box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.2);
         background: #87CEEB;
         color: white;
+    }
+
+    ul {
+        list-style: none; /* Remove bullet points */
+        padding: 0;
+    }
+
+    li {
+        margin-bottom: 1em;
     }
 
     @media (min-width: 640px) {
