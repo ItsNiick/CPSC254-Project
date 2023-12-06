@@ -1,10 +1,18 @@
 <script>
-    import { Link } from 'svelte-routing';
+  import { createEventDispatcher } from 'svelte';
+
+  const dispatch = createEventDispatcher();
+
+  export let dream;
+
+  function handleClick() {
+    dispatch('delete', dream);
+  }
 </script>
-  
-    <button>
-      <slot></slot>
-    </button>
+
+<button on:click={handleClick}>
+  <slot></slot>
+</button>
   
   
   <style>

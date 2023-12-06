@@ -20,6 +20,23 @@
         }
     });
 
+    async function deleteDream(id) {
+        try {
+            const response = await fetch(`http://localhost:3000/api/dreams/${id}`, {
+                method: 'DELETE',
+            });
+
+            if (!response.ok) {
+                throw new Error(`Failed to delete dream with status: ${response.status}`);
+            }
+
+            // Remove the deleted dream from the local dreams array
+            dreams = dreams.filter(dream => dream.id !== id);
+        } catch (error) {
+            console.error('Error deleting dream:', error.message);
+        }
+    }
+
 </script>
 
 <main>
@@ -28,16 +45,16 @@
     <p>You can explore your past dreams, update them, or even delete them.</p>
     {#if dreams.length > 0}
     <ul>
-      {#each dreams as dream (dream.id)}
+        {#each dreams as dream (dream.id)}
         <li>
-          <p>{dream.title}</p>
-          <p>{dream.description}</p>
-          <p>{dream.date}</p>
-          <DeleteButton>Delete this dream</DeleteButton>
-          <UpdateButton>Update this dream</UpdateButton>
+            <p>{dream.title}</p>
+            <p>{dream.description}</p>
+            <p>{dream.date}</p>
+            <DeleteButton on:delete={() => deleteDream(dream.id)}>Delete this dream</DeleteButton>
+            <UpdateButton>Update this dream</UpdateButton>
         </li>
-      {/each}
-        </ul>
+    {/each}
+    </ul>
     {:else}
         <p>No dreams available.</p>
     {/if}
