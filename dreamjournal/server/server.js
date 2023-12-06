@@ -1,12 +1,11 @@
 import express from 'express';
 import bodyParser from 'body-parser';
-import cors from 'cors'; // Import the cors middleware
+import cors from 'cors';
 import { db } from './db.js';
 
 const app = express();
 const port = 3000;
 
-// Use cors middleware
 app.use(cors());
 
 app.use(bodyParser.json());
@@ -36,17 +35,17 @@ app.get('/api/dreams', async (req, res) => {
   });
 });
 
-// API endpoint to update a dream
+// API endpoint to update a dream's description
 app.put('/api/dreams/:id', async (req, res) => {
   const dreamId = req.params.id;
-  const { title, description, date } = req.body;
+  const { description } = req.body;
 
-  db.run('UPDATE dreams SET title = ?, description = ?, date = ? WHERE id = ?', [title, description, date, dreamId], function (err) {
+  db.run('UPDATE dreams SET description = ? WHERE id = ?', [description, dreamId], function (err) {
     if (err) {
       console.error(err.message);
       res.status(500).send('Internal Server Error');
     } else {
-      res.status(200).send('Dream updated successfully');
+      res.status(200).send('Dream description updated successfully');
     }
   });
 });

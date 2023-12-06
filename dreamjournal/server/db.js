@@ -1,10 +1,9 @@
-// db.js
 import sqlite3 from 'sqlite3';
 
-// Connect to the SQLite database
+// connect to the SQLite database
 const db = new sqlite3.Database('dreams.db');
 
-// Create dreams table if not exists
+// create dreams table if not exists
 db.run(`
 CREATE TABLE IF NOT EXISTS dreams (
    id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -17,4 +16,4 @@ INSERT INTO dreams (title, description, date) VALUES
    ('Second Dream', 'I had a strange dream last night.', '2023-12-11');
 `);
 
-export { db }; // Export the database instance directly
+export { db }; // export the database instance directly

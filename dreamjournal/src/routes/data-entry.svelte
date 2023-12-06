@@ -26,7 +26,6 @@
         throw new Error('Dream submission failed');
       }
 
-      // Read the response text directly, not attempting JSON parsing
       const responseText = await response.text();
 
       console.log('Dream submitted successfully:', responseText);

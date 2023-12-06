@@ -26,6 +26,6 @@
     "sirv-cli": "^2.0.0",
     "sqlite3": "^5.1.6",
     "svelte-navigator": "^3.2.2",
-    "svelte-routing": "^2.10.0"
+    "svelte-routing": "^1.0.0"
   }
 }

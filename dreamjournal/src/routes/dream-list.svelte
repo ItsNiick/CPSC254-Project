@@ -1,47 +1,53 @@
 <script>
-    import { Link } from 'svelte-routing';
     import Navbar from "../components/Navbar.svelte";
     import Footer from "../components/Footer.svelte";
     import DeleteButton from '../components/DeleteButton.svelte';
     import UpdateButton from '../components/UpdateButton.svelte';
+    import HomeButton from "../components/HomeButton.svelte";
     import { onMount } from 'svelte';
   
     let dreams = [];
     onMount(async () => {
       try {
+        // fetches data from the API endpoint http://localhost:3000/api/dreams
         const response = await fetch('http://localhost:3000/api/dreams');
+        // if response is not ok, create new error
         if (!response.ok) {
           throw new Error(`Failed to fetch dreams with status: ${response.status}`);
         }
-  
+        // if response is ok, parse the content and assign it to dreams
         dreams = await response.json();
       } catch (error) {
+        // if there was an error, log the error message to the console
         console.error('Error fetching dreams:', error.message);
       }
     });
   
     async function deleteDream(id) {
       try {
+        // delete the dream by sending a DELETE request to the server
         const response = await fetch(`http://localhost:3000/api/dreams/${id}`, {
           method: 'DELETE',
         });
-  
+        // if the response is not ok, create new error
         if (!response.ok) {
           throw new Error(`Failed to delete dream with status: ${response.status}`);
         }
   
-        // Remove the deleted dream from the local dreams array
+        // if successful, removes the deleted dream from the dreams array
         dreams = dreams.filter(dream => dream.id !== id);
       } catch (error) {
+        // if there was an error, log the error message to the console
         console.error('Error deleting dream:', error.message);
       }
     }
-  </script>
+</script>
   
   <main>
     <Navbar />
     <h1>Here is your dream list.</h1>
     <p>You can explore your past dreams, update them, or even delete them.</p>
+    <HomeButton>Return to the homepage</HomeButton>
     {#if dreams.length > 0}
       <ul>
         {#each dreams as dream (dream.id)}

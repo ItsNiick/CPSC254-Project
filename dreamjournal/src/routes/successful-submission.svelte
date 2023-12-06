@@ -1,8 +1,8 @@
 <script>
-    import { Link } from 'svelte-routing';
     import Navbar from "../components/Navbar.svelte";
     import Footer from "../components/Footer.svelte";
     import EntryButton from '../components/EntryButton.svelte';
+    import DreamListButton from "../components/DreamListButton.svelte";
   </script>
   
   <main>
@@ -10,6 +10,7 @@
     <h1>Congratulations!</h1>
     <p>Your dream has successfully been uploaded to the dreamspace.</p>
     <EntryButton>Submit another dream</EntryButton>
+    <DreamListButton>Explore your past dreams</DreamListButton>
     <Footer />
   </main>
   
