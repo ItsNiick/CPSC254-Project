@@ -1,5 +1,4 @@
 <script>
-	export let name;
 	import { Router, Link, Route } from 'svelte-routing';
 	import Footer from './components/Footer.svelte';
 	import Navbar from './components/Navbar.svelte';

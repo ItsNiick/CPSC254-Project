@@ -3,38 +3,33 @@
     import Navbar from "../components/Navbar.svelte";
     import Footer from "../components/Footer.svelte";
     import EntryButton from '../components/EntryButton.svelte';
-    import UpdateButton from '../components/UpdateButton.svelte';
-    import DeleteButton from '../components/DeleteButton.svelte';
-</script>
-
-<main>
+  </script>
+  
+  <main>
     <Navbar />
     <h1>Congratulations!</h1>
     <p>Your dream has successfully been uploaded to the dreamspace.</p>
     <EntryButton>Submit another dream</EntryButton>
-    <UpdateButton>Update this dream</UpdateButton>
-    <DeleteButton>Delete this dream</DeleteButton>
     <Footer />
-</main>
-
-
-<style>
+  </main>
+  
+  <style>
     main {
-		text-align: center;
-		padding: 0%;
-		max-width: 240px;
-		margin: 0 auto;
-	}
+      text-align: center;
+      padding: 0%;
+      max-width: 240px;
+      margin: 0 auto;
+    }
   
     h1 {
-		color: #2D87A8;
-		font-size: 2em;
-		font-weight: 600;
-	}
-
+      color: #2D87A8;
+      font-size: 2em;
+      font-weight: 600;
+    }
+  
     @media (min-width: 640px) {
-		main {
-			max-width: none;
-		}
-	}
-</style>
+      main {
+        max-width: none;
+      }
+    }
+  </style>

@@ -1,10 +1,10 @@
 <script>
-    let dreamText = '';
-    import Navbar from "../components/Navbar.svelte";
-    import Footer from "../components/Footer.svelte";
-    import { navigate } from 'svelte-routing';
+  let dreamText = '';
+  import Navbar from "../components/Navbar.svelte";
+  import Footer from "../components/Footer.svelte";
+  import { navigate } from 'svelte-routing';
 
-    async function submission() {
+  async function submission() {
     console.log('Submitting dream:', dreamText);
 
     try {
@@ -20,10 +20,10 @@
         }),
       });
 
-      console.log('Server response:', response);
-
       if (!response.ok) {
-        throw new Error(`Dream submission failed with status: ${response.status}`);
+        console.error(`Dream submission failed with status: ${response.status}`);
+        console.log('Server response:', await response.text());
+        throw new Error('Dream submission failed');
       }
 
       // Read the response text directly, not attempting JSON parsing
@@ -35,20 +35,18 @@
       console.error('Error submitting dream:', error.message);
     }
   }
+</script>
 
-  </script>
-
-  
-  <main>
-    <Navbar />
-    <h1>Create your dream entry</h1>
-    <p>Note down your dream so that you may revisit it whenever you want</p>
-    <div class="form-container">
-        <textarea bind:value={dreamText} rows="10" cols="30" style="width: 35%;"></textarea>
-        <button on:click={submission}>Submit Dream</button>
-    </div>
-    <Footer />
-  </main>
+<main>
+  <Navbar />
+  <h1>Create your dream entry</h1>
+  <p>Note down your dream so that you may revisit it whenever you want</p>
+  <div class="form-container">
+    <textarea bind:value={dreamText} rows="10" cols="30" style="width: 35%;"></textarea>
+    <button on:click={submission}>Submit Dream</button>
+  </div>
+  <Footer />
+</main>
   
   <style>
 
