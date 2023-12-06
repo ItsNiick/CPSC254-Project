@@ -53,4 +53,11 @@ Dream Journal is a web application designed for users to record, update, and ref
   ```bash
   sudo apt-get upgrade
   ```
-  
+
+## License
+This project is open-source and available under the MIT License.
+
+## Acknowledgements
+- Node.js Community
+- SvelteKit Contributors
+- SQLite3 Team
