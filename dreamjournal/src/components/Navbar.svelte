@@ -1,5 +1,5 @@
 <script>
-    // You can add JavaScript code here if needed
+    // Can add JavaScript code here if needed
   </script>
   
   <style>
@@ -14,8 +14,8 @@
 
 
   .logo img {
-    height:70px; /* or your preferred size */
-    width: 200px; /* or your preferred size */
+    height:70px;
+    width: 200px;
     margin-right: 10px;
   }
   
@@ -31,15 +31,15 @@
     }
 
     .nav-links a {
-    font-size: 1.2rem; /* Adjust the size as you prefer */
+    font-size: 1.2rem;
     color: white;
     text-decoration: none;
-    margin: 0 15px; /* Adjust space between the links */
-    font-family: Arial, sans-serif; /* Choose the font-family you prefer */
+    margin: 0 15px;
+    font-family: Arial, sans-serif;
   }
 
   .nav-links a:hover {
-    text-decoration: underline; /* Adds underline on hover */
+    text-decoration: underline;
   }
 </style>
   

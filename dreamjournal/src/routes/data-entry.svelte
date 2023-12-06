@@ -1,7 +1,9 @@
 <script>
     let dreamText = '';
+    import { Link } from 'svelte-routing';
     import Navbar from "../components/Navbar.svelte";
     import Footer from "../components/Footer.svelte";
+    import HomeButton from '../components/HomeButton.svelte';
 
     function submition() {
         console.log("Your dream has been submitted:", dreamText);
@@ -15,7 +17,9 @@
     <p>Note down your dream:</p>
     <div class="form-container">
         <textarea bind:value={dreamText} rows="10" cols="30" style="width: 35%;"></textarea>
-        <button on:click={submition}>Submit Dream</button>
+        <Link to="/successful-submission">
+          <button on:click={submition}>Submit Dream</button>
+        </Link>
     </div>
     <Footer />
   </main>
@@ -43,7 +47,6 @@
     }
   
     textarea {
-        width: 35%;
         padding: 8px;
         font-size: 1em;
         border: 1px solid #ccc;
