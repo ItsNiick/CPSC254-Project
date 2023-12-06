@@ -4,6 +4,7 @@
 	import Footer from './components/Footer.svelte';
 	import Navbar from './components/Navbar.svelte';
 	import EntryButton from './components/EntryButton.svelte';
+	import DreamListButton from './components/DreamListButton.svelte';
 </script>
 <Router>
 	<Route path ="/">
@@ -21,7 +22,7 @@
 			<p><center>Connect with a community of dreamers, sharing the essence of their night-time odysseys. <br>
 				Gain insights, find inspirations, and enrich your dream journaling experience in a space that celebrates the boundless creativity of dreamers like you!</center></p>
 			<EntryButton>Begin your dream entry</EntryButton>
-			<EntryButton>Explore your past dreams</EntryButton><!-- placeholder, replace once database is functional -->
+			<DreamListButton>Explore your past dreams</DreamListButton>
 			<Footer />
 		</main>
 	</Route>
