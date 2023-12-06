@@ -48,9 +48,11 @@
     <h1>Here is your dream list.</h1>
     <p>You can explore your past dreams, update them, or even delete them.</p>
     <HomeButton>Return to the homepage</HomeButton>
+    <!--checks if dreams array has at least 1 entry-->
     {#if dreams.length > 0}
       <ul>
         {#each dreams as dream (dream.id)}
+        <!--iterates over each dream in the dreams array-->
           <li>
             <p>{dream.title}</p>
             <p>{dream.description}</p>
@@ -61,6 +63,7 @@
         {/each}
       </ul>
     {:else}
+    <!--if dreams array <= 0, display this default message-->
       <p>No dreams available.</p>
     {/if}
     <Footer />
@@ -81,7 +84,7 @@
     }
   
     ul {
-      list-style: none; /* Remove bullet points */
+      list-style: none;
       padding: 0;
     }
   

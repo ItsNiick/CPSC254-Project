@@ -8,29 +8,33 @@
     console.log('Submitting dream:', dreamText);
 
     try {
+      // submit fetch request from API endpoint http://localhost:3000/api/dreams
       const response = await fetch('http://localhost:3000/api/dreams', {
-        method: 'POST',
+        method: 'POST', // makes POST call
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
           title: 'Dream Entry',
-          description: dreamText,
-          date: new Date().toISOString().split('T')[0],
+          description: dreamText, // the actual text from the textbox gets submitted as the description
+          date: new Date().toISOString().split('T')[0], // saves current date as YYYY-MM-DD
         }),
       });
 
       if (!response.ok) {
+        // if response is not ok, create an error message and send it to console log
         console.error(`Dream submission failed with status: ${response.status}`);
         console.log('Server response:', await response.text());
+        // throws a new error that handles the non-ok response
         throw new Error('Dream submission failed');
       }
-
+      // if response is ok, log a message saying Dream submitted successfully
       const responseText = await response.text();
-
       console.log('Dream submitted successfully:', responseText);
+      // move to /successful-submission landing page
       navigate('/successful-submission');
     } catch (error) {
+      // handles errors during fetch request
       console.error('Error submitting dream:', error.message);
     }
   }

@@ -1,3 +1,4 @@
+// use "noder server.js" to start database server
 import express from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
