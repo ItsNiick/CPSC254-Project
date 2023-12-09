@@ -42,7 +42,7 @@ Dream Journal is a web application designed for users to record, update, and ref
 
 
 
-# Development Installation Process:
+<!-- # Development Installation Process:
 ### All requirements listed below are for Ubuntu-based Linux systems.
 1. **Install SQLite:**
   Open your terminal and run these commands in the given order to scan for updates to your system and existing packages:
@@ -60,4 +60,4 @@ This project is open-source and available under the MIT License.
 ## Acknowledgements
 - Node.js Community
 - SvelteKit Contributors
-- SQLite3 Team
+- SQLite3 Team -->
